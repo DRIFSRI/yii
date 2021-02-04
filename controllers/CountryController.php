@@ -22,6 +22,7 @@ class CountryController extends Controller
             ->limit($pagination->limit)
             ->all();
 
+
         return $this->render('index', [
             'countries' => $countries,
             'pagination' => $pagination,

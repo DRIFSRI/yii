@@ -7,7 +7,7 @@ use yii\widgets\LinkPager;
 <?php foreach ($countries as $country): ?>
     <li>
         <?= Html::encode("{$country->code} ({$country->name})") ?>:
-        <?= $country->population ?>
+        <?= $country->population?>
     </li>
 <?php endforeach; ?>
 </ul>

@@ -15,10 +15,11 @@ class m210203_115939_create_ddd_table extends Migration
 
         $this->createTable('MyCountry', [
             'id' => $this->primaryKey()->notNull()->unique(),
-            'code'=>$this->string(3)->notNull()->check("code = 'USA' OR code = 'RU'"),
+            'code'=>$this->string(3)->notNull(),//->check("code = 'USA' OR code = 'RU'"),
             'name'=>$this->string(15)->notNull(),
             'population'=>$this->integer(1)->notNull(),
         ]);
+        $this->insert('MyCountry',['code'=>'RU','name'=>'Russia','population'=>2323233]);
     }
 
     /**
@@ -26,6 +27,6 @@ class m210203_115939_create_ddd_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%ddd}}');
+        $this->dropTable('MyCountry');
     }
 }

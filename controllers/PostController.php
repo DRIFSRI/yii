@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Country;
-use app\models\CountrySearch;
+use app\models\Post;
+use app\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
-     * HelloWorldController implements the CRUD actions for Country model.
+ * PostController implements the CRUD actions for Post model.
  */
-class HelloWorldController extends Controller
+class PostController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class HelloWorldController extends Controller
     }
 
     /**
-     * Lists all Country models.
+     * Lists all Post models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CountrySearch();
+        $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,8 +45,8 @@ class HelloWorldController extends Controller
     }
 
     /**
-     * Displays a single Country model.
-     * @param string $id
+     * Displays a single Post model.
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -58,16 +58,16 @@ class HelloWorldController extends Controller
     }
 
     /**
-     * Creates a new Country model.
+     * Creates a new Post model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Country();
+        $model = new Post();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->code]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -76,9 +76,9 @@ class HelloWorldController extends Controller
     }
 
     /**
-     * Updates an existing Country model.
+     * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -87,7 +87,7 @@ class HelloWorldController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->code]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -96,29 +96,29 @@ class HelloWorldController extends Controller
     }
 
     /**
-     * Deletes an existing Country model.
+     * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
     {
-            $this->findModel($id)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Country model based on its primary key value.
+     * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Country the loaded model
+     * @param integer $id
+     * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Country::findOne($id)) !== null) {
+        if (($model = Post::findOne($id)) !== null) {
             return $model;
         }
 
